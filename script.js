@@ -1,11 +1,11 @@
 /**
  * 广东省城市抽卡程序 - 单张翻牌版
  * @author Claude
- * @version 1.3
+ * @version 1.4
  */
 
 // 程序版本号
-const VERSION = 'v1.3';
+const VERSION = 'v1.4';
 
 // 广东省所有城市
 const cities = [
@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetBtn = document.getElementById('reset-btn');
     const resultElement = document.getElementById('result');
     const versionElement = document.getElementById('version');
+    const resultModal = document.getElementById('result-modal');
+    const closeModalBtn = document.getElementById('close-modal');
     
     // 设置版本号
     versionElement.textContent = VERSION;
@@ -32,6 +34,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 初始化卡片
     initCards();
+    
+    // 关闭弹窗按钮点击事件
+    closeModalBtn.addEventListener('click', () => {
+        resultModal.classList.remove('show');
+    });
+    
+    // 点击弹窗外部关闭弹窗
+    resultModal.addEventListener('click', (e) => {
+        if (e.target === resultModal) {
+            resultModal.classList.remove('show');
+        }
+    });
     
     /**
      * 初始化卡片
@@ -88,6 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // 移除动画类
             cardContainer.classList.remove('shuffling');
+            
+            // 隐藏弹窗
+            resultModal.classList.remove('show');
         }, 500);
     });
     
@@ -114,6 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // 显示结果
             const selectedCity = card.dataset.city;
             resultElement.textContent = selectedCity;
+            
+            // 显示结果弹窗
+            setTimeout(() => {
+                resultModal.classList.add('show');
+            }, 500);
             
             // 恢复按钮状态
             resetBtn.disabled = false;
