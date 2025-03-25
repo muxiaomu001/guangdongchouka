@@ -300,34 +300,76 @@ button:disabled {
     }
 }
 
-/* 省份选择器样式 */
+/* 省份选择器样式更新 */
 .province-selector {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
+    position: relative;
     margin-bottom: 20px;
+    z-index: 10;
 }
 
-.province-btn {
-    padding: 8px 15px;
-    font-size: 14px;
-    background-color: #9E9E9E;
-    border-radius: 20px;
-}
-
-.province-btn.active {
+#province-menu-btn {
     background-color: #FF5722;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.province-btn:hover {
-    background-color: #FF7043;
+#province-menu-btn:hover {
+    background-color: #E64A19;
 }
 
-@media (min-width: 768px) {
-    .province-btn {
-        padding: 10px 20px;
-        font-size: 16px;
-    }
+.province-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    width: 300px;
+    max-width: 90vw;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.province-dropdown.show {
+    display: block;
+    animation: fadeIn 0.2s;
+}
+
+.region-title {
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.region-title:first-child {
+    margin-top: 0;
+}
+
+.province-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    color: #333;
+    margin: 2px 0;
+}
+
+.province-item:hover {
+    background-color: #f5f5f5;
+    color: #FF5722;
+}
+
+.province-item.active {
+    background-color: #FBE9E7;
+    color: #FF5722;
+    font-weight: bold;
 } 
