@@ -298,4 +298,36 @@ button:disabled {
     .confirm-btn {
         padding: 12px 30px;
     }
+}
+
+/* 省份选择器样式 */
+.province-selector {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.province-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #9E9E9E;
+    border-radius: 20px;
+}
+
+.province-btn.active {
+    background-color: #FF5722;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.province-btn:hover {
+    background-color: #FF7043;
+}
+
+@media (min-width: 768px) {
+    .province-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
 } 

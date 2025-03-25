@@ -1,19 +1,39 @@
 /**
- * 广东省城市抽卡程序 - 单张翻牌版
+ * 多省份城市抽卡程序
  * @author Claude
- * @version 1.5
+ * @version 1.6
  */
 
 // 程序版本号
-const VERSION = 'v1.5';
+const VERSION = 'v1.6';
 
-// 广东省所有城市
-const cities = [
-    '广州市', '深圳市', '珠海市', '汕头市', '佛山市', 
-    '韶关市', '湛江市', '肇庆市', '江门市', '茂名市', 
-    '惠州市', '梅州市', '汕尾市', '河源市', '阳江市', 
-    '清远市', '东莞市', '中山市', '潮州市', '揭阳市', '云浮市'
-];
+// 各省份城市数据
+const provincesData = {
+    guangdong: {
+        name: '广东省',
+        cities: [
+            '广州市', '深圳市', '珠海市', '汕头市', '佛山市', 
+            '韶关市', '湛江市', '肇庆市', '江门市', '茂名市', 
+            '惠州市', '梅州市', '汕尾市', '河源市', '阳江市', 
+            '清远市', '东莞市', '中山市', '潮州市', '揭阳市', '云浮市'
+        ]
+    },
+    jiangxi: {
+        name: '江西省',
+        cities: [
+            '南昌市', '景德镇市', '萍乡市', '九江市', '新余市',
+            '鹰潭市', '赣州市', '吉安市', '宜春市', '抚州市', '上饶市'
+        ]
+    },
+    guangxi: {
+        name: '广西壮族自治区',
+        cities: [
+            '南宁市', '柳州市', '桂林市', '梧州市', '北海市',
+            '防城港市', '钦州市', '贵港市', '玉林市', '百色市',
+            '贺州市', '河池市', '来宾市', '崇左市'
+        ]
+    }
+};
 
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,9 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultModal = document.getElementById('result-modal');
     const closeModalBtn = document.getElementById('close-modal');
     const confirmBtn = document.getElementById('confirm-btn');
+    const provinceNameElement = document.getElementById('province-name');
+    const provinceBtns = document.querySelectorAll('.province-btn');
     
     // 设置版本号
     versionElement.textContent = VERSION;
+    
+    // 当前选中的省份
+    let currentProvince = 'guangdong';
     
     // 是否正在抽卡
     let isDrawing = false;
@@ -35,6 +60,29 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // 初始化卡片
     initCards();
+    
+    // 省份按钮点击事件
+    provinceBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (isDrawing) return;
+            
+            const province = btn.dataset.province;
+            if (province === currentProvince) return;
+            
+            // 更新按钮状态
+            provinceBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // 更新当前省份
+            currentProvince = province;
+            
+            // 更新省份名称
+            provinceNameElement.textContent = provincesData[currentProvince].name;
+            
+            // 重置卡片
+            resetCards();
+        });
+    });
     
     // 关闭弹窗按钮点击事件
     closeModalBtn.addEventListener('click', () => {
@@ -63,6 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function initCards() {
         cardContainer.innerHTML = '';
         cards = [];
+        
+        // 获取当前省份的城市
+        const cities = provincesData[currentProvince].cities;
         
         // 随机打乱城市顺序
         const shuffledCities = shuffleArray([...cities]);

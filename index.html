@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>广东省城市抽卡</title>
+    <title>城市抽卡</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>广东省城市抽卡</h1>
+        <h1><span id="province-name">广东省</span>城市抽卡</h1>
+        
+        <div class="province-selector">
+            <button class="province-btn active" data-province="guangdong">广东省</button>
+            <button class="province-btn" data-province="jiangxi">江西省</button>
+            <button class="province-btn" data-province="guangxi">广西壮族自治区</button>
+        </div>
         
         <div class="card-container" id="card-container">
             <!-- 卡片将通过JavaScript动态生成 -->
@@ -19,7 +25,7 @@
         </div>
         
         <div class="version">
-            <p>版本号：<span id="version">v1.5</span></p>
+            <p>版本号：<span id="version">v1.6</span></p>
         </div>
     </div>
     
