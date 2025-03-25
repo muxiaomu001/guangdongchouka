@@ -1,11 +1,11 @@
 /**
  * 广东省城市抽卡程序 - 单张翻牌版
  * @author Claude
- * @version 1.4
+ * @version 1.5
  */
 
 // 程序版本号
-const VERSION = 'v1.4';
+const VERSION = 'v1.5';
 
 // 广东省所有城市
 const cities = [
@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const versionElement = document.getElementById('version');
     const resultModal = document.getElementById('result-modal');
     const closeModalBtn = document.getElementById('close-modal');
+    const confirmBtn = document.getElementById('confirm-btn');
     
     // 设置版本号
     versionElement.textContent = VERSION;
@@ -45,6 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === resultModal) {
             resultModal.classList.remove('show');
         }
+    });
+    
+    // 确认按钮点击事件
+    confirmBtn.addEventListener('click', () => {
+        // 隐藏弹窗
+        resultModal.classList.remove('show');
+        
+        // 重置卡片
+        resetCards();
     });
     
     /**
@@ -89,6 +99,16 @@ document.addEventListener('DOMContentLoaded', () => {
     resetBtn.addEventListener('click', () => {
         if (isDrawing) return;
         
+        // 重置卡片
+        resetCards();
+    });
+    
+    /**
+     * 重置所有卡片
+     */
+    function resetCards() {
+        if (isDrawing) return;
+        
         // 添加重置动画
         cardContainer.classList.add('shuffling');
         
@@ -106,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 隐藏弹窗
             resultModal.classList.remove('show');
         }, 500);
-    });
+    }
     
     /**
      * 抽取卡片

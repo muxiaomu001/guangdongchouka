@@ -281,4 +281,21 @@ button:disabled {
     border-radius: 10px;
     border: 2px dashed #ffca28;
     margin-bottom: 10px;
+}
+
+/* 确认按钮样式 */
+.confirm-btn {
+    margin-top: 20px;
+    background-color: #4CAF50;
+    padding: 10px 25px;
+}
+
+.confirm-btn:hover {
+    background-color: #388E3C;
+}
+
+@media (min-width: 768px) {
+    .confirm-btn {
+        padding: 12px 30px;
+    }
 } 
