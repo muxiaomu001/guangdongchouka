@@ -12,12 +12,13 @@ body {
     align-items: center;
     min-height: 100vh;
     background-image: linear-gradient(to bottom, #ffebee, #ffcdd2);
+    padding: 15px;
 }
 
 .container {
     text-align: center;
     background-color: #fff8f8;
-    padding: 30px;
+    padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
     max-width: 800px;
@@ -27,23 +28,46 @@ body {
 
 h1 {
     color: #d32f2f;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 1.8rem;
 }
 
 .card-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
 .card {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     perspective: 1000px;
     cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .card {
+        width: 100px;
+        height: 100px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .container {
+        padding: 30px;
+    }
+}
+
+@media (min-width: 992px) {
+    .card {
+        width: 120px;
+        height: 120px;
+    }
 }
 
 .card-inner {
@@ -82,9 +106,17 @@ h1 {
     background-color: white;
     color: #d32f2f;
     transform: rotateY(180deg);
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     border: 2px solid #d32f2f;
+    padding: 5px;
+    word-break: break-all;
+}
+
+@media (min-width: 768px) {
+    .card-back {
+        font-size: 16px;
+    }
 }
 
 .card.selected .card-back {
@@ -100,12 +132,22 @@ h1 {
 }
 
 .result-container {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     color: #d32f2f;
     background-color: #ffecb3;
     padding: 15px;
     border-radius: 10px;
     border: 2px dashed #ffca28;
+}
+
+.result-container h2 {
+    font-size: 1.2rem;
+}
+
+@media (min-width: 768px) {
+    .result-container h2 {
+        font-size: 1.5rem;
+    }
 }
 
 .buttons {
@@ -114,8 +156,8 @@ h1 {
 }
 
 button {
-    padding: 15px 40px;
-    font-size: 18px;
+    padding: 12px 30px;
+    font-size: 16px;
     background-color: #2196F3;
     color: white;
     border: none;
@@ -124,6 +166,13 @@ button {
     transition: all 0.3s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    button {
+        padding: 15px 40px;
+        font-size: 18px;
+    }
 }
 
 button:hover {
@@ -165,4 +214,18 @@ button:disabled {
     0% { filter: blur(0); }
     50% { filter: blur(10px); }
     100% { filter: blur(0); }
+}
+
+/* 添加版本号样式 */
+.version {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #888;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .version {
+        font-size: 14px;
+    }
 } 

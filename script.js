@@ -1,7 +1,11 @@
 /**
- * 广东省城市抽奖程序 - 单张翻牌版
+ * 广东省城市抽卡程序 - 单张翻牌版
  * @author Claude
+ * @version 1.3
  */
+
+// 程序版本号
+const VERSION = 'v1.3';
 
 // 广东省所有城市
 const cities = [
@@ -16,8 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardContainer = document.getElementById('card-container');
     const resetBtn = document.getElementById('reset-btn');
     const resultElement = document.getElementById('result');
+    const versionElement = document.getElementById('version');
     
-    // 是否正在抽奖
+    // 设置版本号
+    versionElement.textContent = VERSION;
+    
+    // 是否正在抽卡
     let isDrawing = false;
     // 所有卡片元素
     let cards = [];
@@ -76,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             initCards();
             
             // 重置结果
-            resultElement.textContent = '尚未抽奖';
+            resultElement.textContent = '尚未抽卡';
             
             // 移除动画类
             cardContainer.classList.remove('shuffling');
@@ -90,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function drawCard(card) {
         isDrawing = true;
         resetBtn.disabled = true;
-        resultElement.textContent = '抽奖中...';
+        resultElement.textContent = '抽卡中...';
         
         // 添加动画效果
         card.classList.add('selecting');
